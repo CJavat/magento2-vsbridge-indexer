@@ -2,8 +2,8 @@
 
 namespace Divante\VsbridgeIndexerCore\Elasticsearch;
 
+use Elasticsearch\Client as ElasticsearchClient;
 use Divante\VsbridgeIndexerCore\Api\Client\ClientInterface;
-use Elastic\Elasticsearch\Client as ElasticClient;
 
 /**
  * Class Client
@@ -11,16 +11,16 @@ use Elastic\Elasticsearch\Client as ElasticClient;
 class Client implements ClientInterface
 {
     /**
-     * @var ElasticClient
+     * @var \Elasticsearch\Client
      */
     private $client;
 
     /**
      * Client constructor.
      *
-     * @param ElasticClient $client
+     * @param \Elasticsearch\Client $client
      */
-    public function __construct(ElasticClient $client)
+    public function __construct(ElasticsearchClient $client)
     {
         $this->client = $client;
     }
@@ -93,7 +93,7 @@ class Client implements ClientInterface
 
         try {
             $indices = $this->client->indices()->getMapping(['index' => $indexAlias]);
-        } catch (\Exception $e) {
+        } catch (\Elasticsearch\Common\Exceptions\Missing404Exception $e) {
         }
 
         return array_keys($indices);
