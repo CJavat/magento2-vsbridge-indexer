@@ -54,4 +54,8 @@
   },
   "minimum-stability": "dev",
   "prefer-stable": true
+  "extra": {
+    "branch-alias": {
+      "1.x": "2.0.x-dev"
+    }
 }
