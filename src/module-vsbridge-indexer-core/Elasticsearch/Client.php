@@ -3,6 +3,7 @@
 namespace Divante\VsbridgeIndexerCore\Elasticsearch;
 
 use Divante\VsbridgeIndexerCore\Api\Client\ClientInterface;
+use Elasticsearch\Client as ElasticsearchClient;
 
 /**
  * Class Client
@@ -10,16 +11,16 @@ use Divante\VsbridgeIndexerCore\Api\Client\ClientInterface;
 class Client implements ClientInterface
 {
     /**
-     * @var \Elasticsearch\Client
+     * @var ElasticsearchClient
      */
     private $client;
 
     /**
      * Client constructor.
      *
-     * @param \Elasticsearch\Client $client
+     * @param ElasticsearchClient $client
      */
-    public function __construct(\Elasticsearch\Client $client)
+    public function __construct(ElasticsearchClient $client)
     {
         $this->client = $client;
     }
